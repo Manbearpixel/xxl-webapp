@@ -1,0 +1,82 @@
+<div class="app-body">
+  <div class="hide">
+    <p>MSG::{{model.msg}}</p>
+    <p>Error::{{model.error}}</p>
+
+    <p><strong>Name:</strong>{{model.name}}</p>
+    <td>{{input type="text" value=model.name}}</td>
+  </div>
+
+  <dl class="hide">
+  {{#each-in model.response.block as |key value|}}
+    <dd>{{value}}</dd>
+    <dt>{{key}}</dt>
+  {{/each-in}}
+  </dl>
+
+  <!-- TODO: Animate! -->
+  <div class="xx-primary-data">
+    <ul class="clearfix">
+      <li class="u-font-size-md">type://<span>ADDRESS</span></li>
+      <li class="u-font-size-md">public_key://<span class="word-wrap">{{model.response.address.address}}</span></li>
+    </ul>
+  </div>
+
+  <div class="xx-card u-margin-bottom-lg">
+    <div class="xx-data-split split-first">
+      <dl class="data-display inverse span2">
+        <dt class="overview--date">{{format-timestamp model.response.address.last_tx}}</dt>
+        <dd>Last Transaction</dd>
+      </dl>
+      <dl class="data-display">
+        <dt>{{model.response.address.balance}}</dt>
+        <dd>Balance</dd>
+      </dl>
+      <dl class="data-display">
+        <dt>{{model.response.address.fees}}</dt>
+        <dd>Minted</dd>
+      </dl>
+      <dl class="data-display">
+        <dt>{{model.response.vins.length}}</dt>
+        <dd>Transactions In</dd>
+      </dl>
+      <dl class="data-display">
+        <dt>{{model.response.vouts.length}}</dt>
+        <dd>Transactions Out</dd>
+      </dl>
+    </div>
+  </div>
+
+  <h3>Transaction List coming soon...</h3>
+
+
+  <div class="hide">
+    <h4 class="odn-explorer--tx-list--title u-font-weight-2">Received</h4>
+    <div class="row odn-explorer--tx-list--details clearfix">
+      <div class="col-xs-12 tx-list--details tx-list--details--vout">
+        <div class="details--vout clearfix">
+          <p class="details--address">
+            {{#link-to "address" vout.address_key}}{{vout.address_key}}{{/link-to}}
+          </p>
+          <p class="details--value">{{vout.value}}</p>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="odn-explorer--tx-list--title u-font-weight-2">Sent</h4>
+    <div class="row odn-explorer--tx-list--details clearfix">
+      <div class="col-xs-12 tx-list--details tx-list--details--vin">
+        <div class="details--vin clearfix">
+          <p class="details--address">
+            {{#if (eq vin.address_key null)}}
+            Network
+            {{else}}
+            {{#link-to "address" vin.address_key}}{{vin.address_key}}{{/link-to}}
+            {{/if}}
+          </p>
+          <p class="details--value pull-right">{{vin.value}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

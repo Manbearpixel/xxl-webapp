@@ -1,0 +1,33 @@
+// TODO: Remove in Beta
+.tx-list--details {
+  font-family: monospace;
+
+  .title {
+    // font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+    font-size: 20px;
+  }
+
+  .details--address {
+    a {
+      background-color: $odn-highlight;
+      color: $odn-primary--dark;
+      display: block;
+      padding: 3px 5px;
+
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  .details--value {
+    display: inline-block;
+    float: right;
+  }
+
+  .details--vin {
+    .details--value {
+      float: left;
+    }
+  }
+}

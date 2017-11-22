@@ -1,0 +1,81 @@
+<div class="app-body">
+  <div class="hide">
+    <p>MSG::{{model.msg}}</p>
+    <p>Error::{{model.error}}</p>
+
+    <p><strong>Name:</strong>{{model.name}}</p>
+    <td>{{input type="text" value=model.name}}</td>
+  </div>
+
+  <dl class="hide">
+  {{#each-in model.response.block as |key value|}}
+    <dd>{{value}}</dd>
+    <dt>{{key}}</dt>
+  {{/each-in}}
+  </dl>
+
+  <!-- TODO: Animate! -->
+  <div class="xx-primary-data">
+    <ul class="clearfix">
+      <li class="u-font-size-md">type://<span>TRANSACTION</span></li>
+      <li class="u-font-size-md">tx_type://<span>{{model.response.transaction.tx_type}}</span></li>
+      <li>txid://<span class="word-wrap">{{model.response.transaction.txid}}</span></li>
+    </ul>
+  </div>
+
+  <div class="xx-card u-margin-bottom-lg">
+    <div class="xx-data-split split-first">
+      <dl class="data-display inverse span2">
+        <dt class="overview--date">{{format-timestamp model.response.transaction.time}}</dt>
+        <dd>Date</dd>
+      </dl>
+      <dl class="data-display">
+        <dt>{{model.response.transaction.height_key}}</dt>
+        <dd>Height</dd>
+      </dl>
+      <dl class="data-display">
+        <dt>{{model.response.fee}}</dt>
+        <dd>Fees</dd>
+      </dl>
+    </div>
+  </div>
+
+
+  <div class="xx-card theme--action">
+    <h4 class="title u-font-weight-2">Sender</h4>
+
+    {{#each-in model.response.vins as |key_vin vin|}}
+    <div class="details details--vin">
+      <div class="wrap clearfix">
+        <p class="details--address">
+          {{#if (eq vin.address_key null)}}
+          Network
+          {{else}}
+          {{#link-to "address" vin.address_key class='theme-block'}}{{vin.address_key}}{{/link-to}}
+          {{/if}}
+        </p>
+        <p class="details--value">{{vin.value}}</p>
+      </div>
+    </div>
+    {{/each-in}}
+  </div>
+
+  <div class="xx-card theme--action">
+    <h4 class="title u-font-weight-2">Receiver</h4>
+
+    {{#each-in model.response.vouts as |key_vout vout|}}
+    <div class="details details--vout">
+      <div class="wrap clearfix">
+        <p class="details--address">
+          {{#if (eq vout.address_key null)}}
+          Network
+          {{else}}
+          {{#link-to "address" vout.address_key class='theme-block'}}{{vout.address_key}}{{/link-to}}
+          {{/if}}
+        </p>
+        <p class="details--value">{{vout.value}}</p>
+      </div>
+    </div>
+    {{/each-in}}
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<div class="app-body">
+  <div class="hide">
+    <p>MSG::{{model.msg}}</p>
+    <p>Error::{{model.error}}</p>
+
+    <p><strong>Name:</strong>{{model.name}}</p>
+    <td>{{input type="text" value=model.name}}</td>
+  </div>
+
+  <dl class="hide">
+  {{#each-in model.response.block as |key value|}}
+    <dd>{{value}}</dd>
+    <dt>{{key}}</dt>
+  {{/each-in}}
+  </dl>
+
+  <!-- TODO: Animate! -->
+  <div class="xx-primary-data">
+    <ul class="clearfix">
+      <li class="u-font-size-md">type://<span>BLOCK</span></li>
+      <li class="u-font-size-md">height://<span>{{model.response.block.height}}</span></li>
+      <li>hash://<span class="word-wrap">{{model.response.block.hash}}</span></li>
+    </ul>
+  </div>
+
+  <div class="xx-card u-margin-bottom-lg">
+    <div class="xx-data-split split-first">
+      <dl class="data-display inverse span2">
+        <dt class="overview--date">{{format-timestamp model.response.block.time}}</dt>
+        <dd>Date</dd>
+      </dl>
+      <dl class="data-display">
+        <dt>{{model.response.block.difficulty}}</dt>
+        <dd>Difficulty</dd>
+      </dl>
+      <dl class="data-display">
+        <dt>{{format-bytes model.response.block.size unitWrap="true"}}</dt>
+        <dd>Size</dd>
+      </dl>
+      <dl class="data-display">
+        <dt>{{model.response.block.mint}}</dt>
+        <dd>Mint</dd>
+      </dl>
+      <dl class="data-display">
+        <dt>{{model.response.transactions.length}}</dt>
+        {{#if (or (gt model.response.transactions.length 1) (eq model.response.transactions.length 0))}}
+          <dd>{{title}}Transactions</dd>
+        {{else}}
+          <dd>{{title}}Transaction</dd>
+        {{/if}}
+      </dl>
+    </div>
+  </div>
+
+  {{#if (not-eq model.response.block.nextblockhash '')}}
+  <button class="hide" type="button">Next Block</button>
+  {{/if}}
+
+  {{#if (not-eq model.response.block.prevblockhash '')}}
+  <button class="hide" type="button">Previous Block</button>
+  {{/if}}
+
+  {{#each-in model.response.transactions as |num transaction|}}
+    <div class="xx-card theme--action xx-card--split-grid">
+      <h4 class="title u-font-weight-2">Transaction:// <span class="theme-action">{{increment-index num}}</span></h4>
+
+      <div class="flags">
+        <span class="flags--tx-type">{{transaction.tx_type}}</span>
+        <span class="flags--block-type">{{model.response.block.flags}}</span>
+      </div>
+
+      <div class="details details--vin">
+        <h5 class="title">Sender</h5>
+        {{#each-in transaction.vins as |key_vin vin|}}
+        <div class="wrap clearfix">
+          <p class="details--address">
+            {{#if (eq vin.address_key null)}}
+            Network
+            {{else}}
+            {{#link-to "address" vin.address_key class='theme-block'}}{{vin.address_key}}{{/link-to}}
+            {{/if}}
+          </p>
+          <p class="details--value">{{vin.value}}</p>
+        </div>
+        {{/each-in}}
+      </div>
+
+      <div class="details details--vout">
+        <h5 class="title">Receiver</h5>
+        {{#each-in transaction.vouts as |key_vout vout|}}
+          {{#if (not-eq vout.address_key null)}}
+          <div class="wrap clearfix">
+            <p class="details--address">
+              {{#link-to "address" vout.address_key class='theme-block'}}{{vout.address_key}}{{/link-to}}
+            </p>
+            <p class="details--value">{{vout.value}}</p>
+          </div>
+          {{/if}}
+        {{/each-in}}
+      </div>
+
+      <div class="hash">
+        <h5 class="title u-font-size-md">Transaction Hash</h5>
+        {{#link-to "transaction" transaction.txid class="block-theme-highlight"}}{{transaction.txid}}{{/link-to}}
+      </div>
+    </div>
+  {{/each-in}}
+</div>

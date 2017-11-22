@@ -1,0 +1,50 @@
+.footer {
+  background-color: $footer--bg;
+  color: #cccccc;
+  font-size: 0.9em;
+  display: grid;
+  grid-gap: 1em;
+  padding: 15px;
+
+  .about {
+    .logo {
+      font-size: 1.5em;
+    }
+  }
+
+  .version {
+    font-size: 0.7em;
+  }
+
+  .title {
+    font-size: 1.1em;
+  }
+
+  a {
+    color: $odn-highlight;
+
+    &.external {
+      &:after,
+      &::after {
+        opacity: 0.8;
+        // @include transition(opacity 150ms linear);
+      }
+
+      &:hover,
+      &:focus {
+        &:after,
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  @include breakpoint(sm) {
+    grid-template-columns: repeat(2, 1fr);
+
+    .links {
+      text-align: right;
+    }
+  };
+}

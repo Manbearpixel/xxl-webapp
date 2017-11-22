@@ -1,0 +1,31 @@
+<div class="header--row">
+  <div class="header--logo">
+    <h1>ObsidanXXL</h1>
+    <p class="version muted">v{{version}}</p>
+    <div class="mobile-nav-action" {{action "toggleMobileNav" 'action'}}>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <ul class="nav-list horizontal">
+      <li>{{#link-to 'index'}}Home{{/link-to}}</li>
+      <li>{{#link-to 'about'}}About{{/link-to}}</li>
+      <li>{{#link-to 'stats'}}Statistics{{/link-to}}</li>
+      <li>{{#link-to 'history'}}History{{/link-to}}</li>
+    </ul>
+  </nav>
+
+  {{#if enableSearch}}
+    <div class="header--search">
+      <form class="" {{action "search" this.query on="submit"}}>
+        <div class="search-wrap {{if isSearchedFocused "search-focus"}}">
+          {{input value=query class='input text'}}
+          <button type="button" class="button search-icon"><i class="icon-magnifier"></i></button>
+        </div>
+      </form>
+    </div>
+  {{/if}}
+</div>

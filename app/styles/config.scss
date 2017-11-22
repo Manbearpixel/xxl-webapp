@@ -1,0 +1,245 @@
+//$dark: #333333;
+// https://getbootstrap.com/docs/4.0/content/reboot/
+$simple-line-font-path: '/fonts';
+
+$theme-dark: #333C4B;
+$theme-light: #FDFDFD;
+$theme-action: #2EC1E9;
+$theme-warning: #f3776a;
+$theme-gray: #666666;
+$theme-graylight: #A6AAB1;
+
+$odn-white: #DFF7F1;
+$odn-gray: #D9E5E5;
+$odn-primary: #253140;
+$odn-primary--dark: #181E2C;
+$odn-highlight: #29C69F;
+
+$app--bg: $odn-primary--dark;
+$body--bg: $odn-primary;
+$header--bg: $odn-primary;
+$footer--bg: $odn-primary;
+$header-search--bg: $odn-white;
+$aside--bg: $odn-primary;
+
+
+$dark: #212624;
+$primaryDark: #2e303e;
+
+$light: #F1F3F2;
+
+$data-border-color: $theme-graylight;
+
+$navbar-bg: $odn-primary;
+$navbar-font-color: $light;
+$navbar-link-color: $navbar-font-color;
+$navbar-bg--active: lighten($navbar-bg, 20);
+
+// $navbar-bg: $primaryDark;
+// $navbar-color: $light;
+// $navbar-link: $navbar-color;
+// $navbar-bg--active: lighten($navbar-bg, 20);
+
+.hover-fx {
+  position: relative;
+  overflow: hidden;
+  outline: none;
+
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $odn-highlight;
+    text-decoration: none;
+
+    &:after,
+    &::after {
+      background-color: $odn-highlight;
+      -webkit-transform: scaleX(1);
+      transform: scaleX(1);
+    }
+  }
+
+  &:after,
+  &::after {
+    position: absolute;
+    top: auto;
+    bottom: 1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $odn-highlight;
+    content: '';
+    -webkit-transition: all 0.2s;
+    -webkit-backface-visibility: hidden;
+    transition: all 0.2s;
+    backface-visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+  }
+}
+
+
+$zindex-dropdown:          1000 !default;
+$zindex-sticky:            1020 !default;
+$zindex-fixed:             1030 !default;
+$zindex-modal-backdrop:    1040 !default;
+$zindex-modal:             1050 !default;
+$zindex-popover:           1060 !default;
+$zindex-tooltip:           1070 !default;
+
+
+// Variables
+// ---------
+
+// Extra small screen / phone
+$screen-xs: 480px;
+
+// Small screen / tablet
+$screen-sm: 768px;
+
+// Medium screen / desktop
+$screen-md: 992px;
+
+// Large screen / wide desktop
+$screen-lg: 1200px;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max: ($screen-sm - 1);
+$screen-sm-max: ($screen-md - 1);
+$screen-md-max: ($screen-lg - 1);
+
+// respond-to()
+// ------------
+
+@mixin respond-to($media) {
+  @if $media == xs {
+		@media (max-width: $screen-xs-max) { @content; }
+	}
+	@else if $media == sm {
+		@media (min-width: $screen-sm) and (max-width: $screen-sm-max) { @content; }
+	}
+	@else if $media == md {
+		@media (min-width: $screen-md) and (max-width: $screen-md-max) { @content; }
+	}
+	@else if $media == lg {
+		@media (min-width: $screen-lg) { @content; }
+	}
+}
+
+@mixin breakpoint($class) {
+  @if $class == xs or $class == phone {
+    @media (max-width: $screen-xs-max) { @content; }
+  }
+
+  @else if $class == sm or $class == tablet {
+    @media (min-width: $screen-sm) { @content; }
+  }
+
+  @else if $class == md or $class == desktop-sm {
+    @media (min-width: $screen-md) { @content; }
+  }
+
+  @else if $class == lg or $class == desktop-lg {
+    @media (min-width: $screen-lg) { @content; }
+  }
+
+  @else {
+    @warn "Breakpoint mixin supports: xs|phone, sm|tablet, md|desktop-sm, lg|desktop-lg";
+  }
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@include keyframes(logo-fade-in) {
+  0% {
+    opacity: 0.0;
+  }
+
+  100% {
+    opacity: 0.3;
+    top: 10px;
+  }
+}
+
+/*
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+@include media-breakpoint-up(xs) { ... }
+@include media-breakpoint-up(sm) { ... }
+@include media-breakpoint-up(md) { ... }
+@include media-breakpoint-up(lg) { ... }
+@include media-breakpoint-up(xl) { ... }
+
+// Example usage:
+@include media-breakpoint-up(sm) {
+  .some-class {
+    display: block;
+  }
+}
+*/
+
+
+/*
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575px) { ... }
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767px) { ... }
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991px) { ... }
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199px) { ... }
+
+// Extra large devices (large desktops)
+// No media query since the extra-large breakpoint has no upper bound on its width
+
+@include media-breakpoint-down(xs) { ... }
+@include media-breakpoint-down(sm) { ... }
+@include media-breakpoint-down(md) { ... }
+@include media-breakpoint-down(lg) { ... }
+*/
+
+/*
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575px) { ... }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+@include media-breakpoint-only(xs) { ... }
+@include media-breakpoint-only(sm) { ... }
+@include media-breakpoint-only(md) { ... }
+@include media-breakpoint-only(lg) { ... }
+@include media-breakpoint-only(xl) { ... }
+*/

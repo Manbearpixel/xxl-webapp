@@ -1,0 +1,77 @@
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+     -moz-animation: #{$str};
+      -ms-animation: #{$str};
+       -o-animation: #{$str};
+          animation: #{$str};
+}
+
+@mixin animation-delay($amount) {
+  -webkit-animation-delay: $amount;
+     -moz-animation-delay: $amount;
+      -ms-animation-delay: $amount;
+       -o-animation-delay: $amount;
+          animation-delay: $amount;
+}
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+     -moz-transition: $transition;
+       -o-transition: $transition;
+          transition: $transition;
+}
+
+@mixin transition-transform($transition) {
+  -webkit-transition: -webkit-transform $transition;
+     -moz-transition:    -moz-transform $transition;
+       -o-transition:      -o-transform $transition;
+          transition:         transform $transition;
+}
+
+@mixin transform($transforms) {
+  -webkit-transform: $transforms;
+	   -moz-transform: $transforms;
+	    -ms-transform: $transforms;
+ 	     -o-transform: $transforms;
+          transform: $transforms;
+}
+
+@mixin transform-origin($transform-origin) {
+  -webkit-transform-origin: $transform-origin;
+	   -moz-transform-origin: $transform-origin;
+	    -ms-transform-origin: $transform-origin;
+ 	     -o-transform-origin: $transform-origin;
+          transform-origin: $transform-origin;
+}
+
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+@mixin no-select {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}

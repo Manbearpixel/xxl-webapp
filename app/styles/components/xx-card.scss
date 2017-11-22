@@ -1,0 +1,98 @@
+.xx-card {
+  background-color: $odn-white;
+  border: 1px solid $theme-graylight;
+  color: $dark;
+
+  &.theme--action {
+    @extend .monospace;
+
+    color: #ffffff;
+    background-color: transparent;
+    border: 1px solid $theme-action;
+    box-shadow: 0 6px 0 3px $theme-action;
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    padding: 20px 10px 5px;
+    position: relative;
+
+    > .title {
+      background-color: $odn-primary--dark;
+      font-size: 1.5em;
+      margin: 0;
+      padding: 0 5px;
+      position: absolute;
+      top: -15px;
+      left: 5px;
+
+      span {
+        font-weight: lighter;
+      }
+    }
+
+    > .flags {
+      margin-bottom: 10px;
+
+      > span {
+        background-color: $odn-highlight;
+        color: $odn-primary--dark;
+        padding: 2px 5px;
+      }
+    }
+
+    > .details {
+      margin-bottom: 10px;
+
+      .title {
+        font-size: 1.2em;
+        margin-bottom: 0.5em;
+        margin-top: 0;
+      }
+
+      p {
+        margin-bottom: 0;
+      }
+
+      .details--address {
+        margin-bottom: 3px;
+      }
+    }
+
+    > .hash {
+      margin: 10px 0 5px;
+    }
+  }
+
+  &.xx-card--split-grid {
+    @include breakpoint(sm) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      > .flags,
+      > .hash {
+        grid-column-end: span 2;
+      }
+
+      .wrap {
+        margin-bottom: 1em;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+
+      .details--vout {
+        .details--value {
+          // text-align: right;
+        }
+      }
+    }
+  }
+
+  .xx-data-split {
+    @include breakpoint(sm) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

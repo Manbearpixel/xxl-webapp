@@ -1,0 +1,75 @@
+<div class="app-body">
+  <h2 class="lead">Obsidian MasterNode Dashboard</h2>
+
+  <div class="xx-row">
+    <div class="xx-span-6">
+      <h3 class="title">Server Status</h3>
+      <h4 class="theme-action">
+        {{model.systemInfo.os.distro}} // <span>{{model.systemInfo.os.release}}</span>
+      </h4>
+      <div class="xx-card">
+        <div class="xx-data-split split-right">
+          <dl class="data-display inverse">
+            <dt>
+              {{format-bytes model.systemInfo.storageLeft unitWrap="true"}}
+            </dt>
+            <dd>Free Space</dd>
+          </dl>
+          <dl class="hide data-display inverse">
+            <dt>
+              {{format-bytes model.systemInfo.storageLeft unitWrap="true"}} /
+              <span class="theme-action">{{format-bytes model.systemInfo.storage.size unitWrap="true"}}</span>
+            </dt>
+            <dd>Free Space</dd>
+          </dl>
+          <dl class="data-display inverse">
+            <dt>
+              {{format-bytes model.systemInfo.memoryLeft unitWrap="true"}}
+            </dt>
+            <dd>Free Memory</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="xx-span-6">
+      <h3 class="title">Node Status</h3>
+      <h4 class="{{if staking.staking "theme-action" "theme-warning"}}">
+        {{if model.odnDataStaking.staking "STAKING" "NOT STAKING"}}
+        <small>{{format-node-version model.odnDataInfo.version}}</small>
+      </h4>
+      <div class="xx-card">
+        <div class="xx-data-split split-right">
+          <dl class="data-display inverse">
+            <dt>{{model.odnDataInfo.connections}}</dt>
+            <dd>Connected Peers</dd>
+          </dl>
+          <dl class="data-display inverse">
+            <dt>{{format-staking model.odnDataStaking.weight}}</dt>
+            <dd>Staking Weight</dd>
+          </dl>
+          <hr class="split-bottom" />
+          <dl class="data-display inverse">
+            <dt>{{format-bytes model.odnDataNetwork.totalbytessent unitWrap="true"}}</dt>
+            <dd>Bytes Sent</dd>
+          </dl>
+          <dl class="data-display inverse">
+            <dt>{{format-bytes model.odnDataNetwork.totalbytesrecv unitWrap="true"}}</dt>
+            <dd>Bytes Received</dd>
+          </dl>
+          {{#if staking.staking}}
+            <dl class="data-display inverse">
+              <dt>{{format-unix model.odnDataInfo.unlocked_until}}</dt>
+              <dd>Staking Until</dd>
+            </dl>
+          {{else if isReading}}
+            <dl class="data-display inverse">
+              <dt>---</dt>
+              <dd>Staking Until</dd>
+            </dl>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

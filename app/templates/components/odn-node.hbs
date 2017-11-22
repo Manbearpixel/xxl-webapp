@@ -1,0 +1,54 @@
+<h3 class="title">Node Status</h3>
+<h4 class="{{if staking.staking "theme-action" "theme-warning"}}">
+  {{if staking.staking "STAKING" "NOT STAKING"}}
+  <small>v1.0.0.7</small>
+</h4>
+
+<div class="node-card node-card--light">
+  <div class="row node-card--split">
+    <div class="col-xs-12 col-sm-6">
+      <dl class="data-display inverse">
+        <dt>{{info.connections}}</dt>
+        <dd>Connected Peers</dd>
+      </dl>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <dl class="data-display inverse">
+        <dt>{{format-staking staking.weight}}</dt>
+        <dd>Staking Weight</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="row node-card--split">
+    <div class="col-xs-12 col-sm-6">
+      <dl class="data-display inverse">
+        <dt>{{format-bytes network.totalbytessent unitWrap="true"}}</dt>
+        <dd>Bytes Sent</dd>
+      </dl>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <dl class="data-display inverse">
+        <dt>{{format-bytes network.totalbytesrecv unitWrap="true"}}</dt>
+        <dd>Bytes Received</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      {{#if staking.staking}}
+        <dl class="data-display inverse">
+          <dt>{{format-unix info.unlocked_until}}</dt>
+          <dd>Staking Until</dd>
+        </dl>
+      {{else if isReading}}
+        <dl class="data-display inverse">
+          <dt>---</dt>
+          <dd>Staking Until</dd>
+        </dl>
+      {{/if}}
+
+    </div>
+  </div>
+</div>

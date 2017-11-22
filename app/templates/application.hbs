@@ -1,0 +1,42 @@
+<div class="nav-mobile">
+  <nav class="nav">
+    <ul class="nav-list">
+      <li>{{#link-to 'index' invokeAction=(action 'toggleMobileNav' 'link')}}
+        Home{{/link-to}}</li>
+      <li>{{#link-to 'about' invokeAction=(action 'toggleMobileNav' 'link')}}
+        About{{/link-to}}</li>
+      <li>{{#link-to 'stats' invokeAction=(action 'toggleMobileNav' 'link')}}
+        Statistics{{/link-to}}</li>
+      <li>{{#link-to 'history' invokeAction=(action 'toggleMobileNav' 'link')}}
+        History{{/link-to}}</li>
+    </ul>
+  </nav>
+</div>
+
+<div class="app-view">
+  {{xxl-header search="search" toggleMobileNav="toggleMobileNav" version=xxlVersion enableSearch=model.enableSearch}}
+
+  <section class="network">
+    {{#data-display title='Current Block'}}
+      {{model.odnDataInfo.blocks}}
+    {{/data-display}}
+
+    {{#data-display title='Last Price'}}
+      {{token-value-data-list usd=model.priceInfo.price_usd btc=model.priceInfo.price_btc}}
+    {{/data-display}}
+
+    {{#data-display title='Network Weight'}}
+      {{format-staking model.odnDataMining.netstakeweight}}
+    {{/data-display}}
+  </section>
+
+  <main class="main">
+    <div class="warning-alpha">
+      <p><span class="theme-action">Heads Up!</span> You're entering a beta environment. Certain features may or may not be available at this time, and information provided might not be the most up-to-date. ✌️</p>
+    </div>
+
+    {{outlet}}
+  </main>
+
+  {{xxl-footer version=xxlVersion price_usd=model.priceInfo.price_usd price_btc=model.priceInfo.price_btc currentBlock=model.odnDataInfo.blocks humaizedUpdatedAt=model.priceInfo.humanized_last_updated}}
+</div>

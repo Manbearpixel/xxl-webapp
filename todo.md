@@ -1,0 +1,7 @@
+- Change font to https://fonts.google.com/specimen/Montserrat
+- Color scheme
+    - White:DFF7F1
+    - Gray:D9E5E5
+    - Slate:253140
+    - Black:181E2C
+    - obsidianPrimary:29C69F

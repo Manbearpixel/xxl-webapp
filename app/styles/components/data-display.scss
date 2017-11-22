@@ -1,0 +1,95 @@
+.data-display {
+  color: $theme-gray;
+  font-size: 16px;
+  margin: 0.5em 0;
+  text-align: center;
+  width: 100%;
+
+  dt {
+    font-size: 1.8em;
+    font-weight: 300;
+
+    .shrink {
+      font-size: 0.7em;
+      font-weight: 200;
+    }
+  }
+
+  dd {
+    font-size: 1em;
+    font-weight: 200;
+  }
+
+  // places the dd element above the dt
+  &.inverse {
+    position: relative;
+
+    dt {
+      padding-top: 20px;
+    }
+
+    dd {
+      position: absolute;
+      width: 100%;
+      top: 0;
+    }
+  }
+}
+
+@include respond-to(xs) {
+  dl.data-display {
+    margin: 10px 0;
+  }
+}
+
+/* Data Split for Data Display */
+.xx-data-split {
+
+  &.split-first {
+    .data-display:first-of-type {
+      &:after {
+        content: '';
+        border-bottom: 1px solid $theme-graylight;
+        margin: 0 auto;
+        position: absolute;
+        left: 50%;
+        bottom: -5px;
+        height: 1px;
+        width: 80%;
+
+        @include transform(translate3d(-50%, 0, 0));
+      }
+    }
+  }
+
+  &.split-right {
+    .data-display {
+      border-right: 1px solid $theme-graylight;
+
+      &:last-of-type {
+        border-right: 0;
+      }
+    }
+  }
+
+  .split-bottom {
+    border-top: 1px solid rgba($theme-graylight, 1); //.15
+    border-bottom: 1px solid rgba($theme-graylight, .3); //.1
+
+    grid-column-start: span 2;
+
+    margin: 1em 0;
+    line-height: 1;
+    height: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: rgba(0,0,0,.85);
+
+    @include no-select;
+  }
+
+  .data-display {
+    position: relative;
+  }
+}
