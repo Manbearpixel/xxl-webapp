@@ -3,8 +3,8 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'portal-app',
-    version: '0.0.1',
+    modulePrefix: 'XXL-WebApp',
+    version: '0.0.2',
     environment,
     rootURL: '/',
     locationType: 'auto',
