@@ -1,15 +1,22 @@
 {
-  "name": "portal-app",
-  "version": "0.0.0",
+  "name": "XXL-WebApp",
+  "version": "0.0.2",
   "private": true,
-  "description": "Small description for portal-app goes here",
+  "description": "ObsidianXXL Dashboard Source -- EmberJS WebApp for Masternodes",
   "license": "MIT",
-  "author": "",
+  "author": "manbearpixel",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manbearpixel/xxl-webapp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Manbearpixel/xxl-webapp/issues"
+  },
+  "homepage": "https://github.com/Manbearpixel/xxl-webapp#readme",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
