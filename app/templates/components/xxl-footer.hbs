@@ -1,16 +1,22 @@
 <div class="about">
-  <p class="logo">ObsidianXXL <span class="version muted">v{{version}}</span></p>
-  <p class="u-text-align-justify--sm">ObsidianXXL is a dashboard developed for Obsidian to provide current network details and information about the blockchain</p>
+  <p class="logo">ObsidianXXL <span class="version muted"> &copy; 2017 | v{{version}}</span></p>
+  <ul class="horizontal list-social-icons">
+    <li><a target="_blank" href="https://twitter.com/ObsidianCrypto"><span class="icon-social-twitter icons"></span></a></li>
+    <li><a target="_blank" href="https://www.facebook.com/TheObsidianPlatform/"><span class="icon-social-facebook icons"></span></a></li>
+    <li><a target="_blank" href="https://www.reddit.com/r/ObsidianProject/"><span class="icon-social-reddit icons"></span></a></li>
+  </ul>
+
+  <p class="u-text-align-justify--sm">ObsidianXXL is a dashboard developed for Obsidian to provide current Obsidian Node details and information about the blockchain.</p>
   <p class="muted">Last Price: {{token-value-data-list usd=price_usd btc=price_btc}}</p>
   <p class="muted">Price Updated: {{humaizedUpdatedAt}}</p>
   <p class="muted">Current Block: {{currentBlock}}</p>
 </div>
 <div class="links">
   <h5 class="title">Github Repos</h5>
-  <p>ObsidianXXL <span class="muted shrink">(public repo soon)</span></p>
+  <p>ObsidianXXL <a class="external" href="https://github.com/Manbearpixel/ObsidianXXL" target="_blank">Github</a></p>
   <p>Obsidian-QT Wallet <a class="external" href="https://github.com/obsidianproject/Obsidian-Qt" target="_blank">Github</a></p>
   <h5 class="title u-margin-top-sm">Obsidian Resources</h5>
   <p><a class="external" href="https://obsidianplatform.com" target="_blank">Obsidian Home</a></p>
-  <p>Obsidian Community<span class="muted shrink">(coming soon)</span></p>
+  <p><a class="external" href="https://medium.com/@obsidian_crypto" target="_blank">Obsidian Blog</a></p>
 </div>
 {{yield}}

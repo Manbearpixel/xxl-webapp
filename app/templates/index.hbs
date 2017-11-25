@@ -30,25 +30,12 @@
           </dl>
         </div>
       </div>
-    </div>
 
-    <div class="xx-span-6">
-      <h3 class="title">Node Status</h3>
-      <h4 class="{{if staking.staking "theme-action" "theme-warning"}}">
-        {{if model.odnDataStaking.staking "STAKING" "NOT STAKING"}}
-        <small>{{format-node-version model.odnDataInfo.version}}</small>
+      <h3 class="title u-margin-top-sm ">Network Status</h3>
+      <h4 class=""><span class="theme-action">{{model.odnDataInfo.connections}}</span> <span class="muted small">Connected Peers</span>
       </h4>
       <div class="xx-card">
         <div class="xx-data-split split-right">
-          <dl class="data-display inverse">
-            <dt>{{model.odnDataInfo.connections}}</dt>
-            <dd>Connected Peers</dd>
-          </dl>
-          <dl class="data-display inverse">
-            <dt>{{format-staking model.odnDataStaking.weight}}</dt>
-            <dd>Staking Weight</dd>
-          </dl>
-          <hr class="split-bottom" />
           <dl class="data-display inverse">
             <dt>{{format-bytes model.odnDataNetwork.totalbytessent unitWrap="true"}}</dt>
             <dd>Bytes Sent</dd>
@@ -57,19 +44,41 @@
             <dt>{{format-bytes model.odnDataNetwork.totalbytesrecv unitWrap="true"}}</dt>
             <dd>Bytes Received</dd>
           </dl>
-          {{#if staking.staking}}
-            <dl class="data-display inverse">
+        </div>
+      </div>
+    </div>
+
+    <div class="xx-span-6">
+      <h3 class="title">Node Status</h3>
+      <h4 class="{{if model.odnDataStaking.staking "theme-action" "theme-warning"}}">
+        {{if model.odnDataStaking.staking "STAKING" "NOT STAKING"}}
+        <small>{{format-node-version model.odnDataInfo.version}}</small>
+      </h4>
+      <div class="xx-card">
+        <div class="xx-data-split split-right {{if model.odnDataStaking.staking "split-first" ""}}">
+          {{#if model.odnDataStaking.staking}}
+            <dl class="data-display span2">
+              <dt class="u-text-transform-capitalize">{{format-staking-time model.odnDataStaking.expectedtime unitWrap="true"}}</dt>
+              <dd>Estimated Reward</dd>
+            </dl>
+
+            <dl class="data-display span2">
               <dt>{{format-unix model.odnDataInfo.unlocked_until}}</dt>
               <dd>Staking Until</dd>
             </dl>
-          {{else if isReading}}
-            <dl class="data-display inverse">
-              <dt>---</dt>
-              <dd>Staking Until</dd>
-            </dl>
+            <hr class="split-bottom" />
           {{/if}}
+          <dl class="data-display inverse">
+            <dt>{{format-staking-weight model.odnDataStaking.weight}}</dt>
+            <dd>Staking Weight</dd>
+          </dl>
+          <dl class="data-display inverse">
+            <dt>{{model.odnDataInfo.balance}}</dt>
+            <dd>Balance</dd>
+          </dl>
         </div>
       </div>
     </div>
   </div>
+
 </div>

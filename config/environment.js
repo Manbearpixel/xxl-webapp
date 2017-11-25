@@ -3,11 +3,12 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'XXL-WebApp',
-    version: '0.0.2',
-    environment,
+    version: '0.1.0',
     rootURL: '/',
+    environment,
     locationType: 'auto',
+    modulePrefix: 'XXL-WebApp',
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -22,14 +23,13 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      enable_search:  true,
-      ODN_API_XXL:    'http://localhost:3000',
-      ODN_API_SEARCH: 'http://localhost:3002'
+      enable_search:  false, // enable blockchain search
+      ODN_API_XXL:    'http://localhost:4201',  // uri for xxl-api
+      ODN_API_SEARCH: 'http://localhost:3000'   // uri for blockchain search
     }
   };
 
   if (environment === 'development') {
-    // ENV.ODN_EXTERNAL_API = 'http://3212232f.ngrok.io'
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -49,8 +49,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.ODN_API_XXL =    'http://localhost:3000',
-    ENV.APP.ODN_API_SEARCH = 'http://localhost:3002'
+    ENV.APP.ODN_API_XXL     = ''
   }
 
   return ENV;

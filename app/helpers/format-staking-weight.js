@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export function formatStaking(params/*, hash*/) {
+export function formatStakingWeight(params/*, hash*/) {
   if (isNaN(params)) { return params; }
 
   let staking = parseFloat(params / 100000000);
@@ -12,4 +12,4 @@ export function formatStaking(params/*, hash*/) {
   return Ember.String.htmlSafe(staking);
 }
 
-export default Ember.Helper.helper(formatStaking);
+export default Ember.Helper.helper(formatStakingWeight);

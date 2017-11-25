@@ -25,6 +25,7 @@ module.exports = function(defaults) {
     destDir: 'fonts'
   });
 
+  app.import('node_modules/moment/min/moment.min.js');
   // app.import('./node_modules/bootstrap-sass/scss/stylesheets/bootstrap.scss');
   // app.import('./node_modules/bootstrap-sass/scss/fonts/bootstrap/glyphicons-halflings-regular.svg', {
   //   destDir: 'fonts'

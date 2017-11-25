@@ -2,7 +2,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('format-staking', 'helper:format-staking', {
+moduleForComponent('format-staking-weight', 'helper:format-staking-weight', {
   integration: true
 });
 
@@ -10,8 +10,7 @@ moduleForComponent('format-staking', 'helper:format-staking', {
 test('it renders', function(assert) {
   this.set('inputValue', '1234');
 
-  this.render(hbs`{{format-staking inputValue}}`);
+  this.render(hbs`{{format-staking-weight inputValue}}`);
 
   assert.equal(this.$().text().trim(), '1234');
 });
-

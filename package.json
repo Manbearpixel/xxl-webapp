@@ -1,6 +1,6 @@
 {
   "name": "XXL-WebApp",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "private": true,
   "description": "ObsidianXXL Dashboard Source -- EmberJS WebApp for Masternodes",
   "license": "MIT",
@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/Manbearpixel/xxl-webapp#readme",
   "scripts": {
-    "build": "ember build",
+    "build": "ember build -prod -o=../public",
     "start": "ember server",
     "test": "ember test"
   },
@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
+    "moment": "^2.19.2",
     "simple-line-icons": "^2.4.1"
   }
 }

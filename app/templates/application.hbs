@@ -3,12 +3,6 @@
     <ul class="nav-list">
       <li>{{#link-to 'index' invokeAction=(action 'toggleMobileNav' 'link')}}
         Home{{/link-to}}</li>
-      <li>{{#link-to 'about' invokeAction=(action 'toggleMobileNav' 'link')}}
-        About{{/link-to}}</li>
-      <li>{{#link-to 'stats' invokeAction=(action 'toggleMobileNav' 'link')}}
-        Statistics{{/link-to}}</li>
-      <li>{{#link-to 'history' invokeAction=(action 'toggleMobileNav' 'link')}}
-        History{{/link-to}}</li>
     </ul>
   </nav>
 </div>
@@ -26,12 +20,12 @@
     {{/data-display}}
 
     {{#data-display title='Network Weight'}}
-      {{format-staking model.odnDataMining.netstakeweight}}
+      {{format-staking-weight model.odnDataMining.netstakeweight}}
     {{/data-display}}
   </section>
 
   <main class="main">
-    <div class="warning-alpha">
+    <div class="warning-alpha hide">
       <p><span class="theme-action">Heads Up!</span> You're entering a beta environment. Certain features may or may not be available at this time, and information provided might not be the most up-to-date. ✌️</p>
     </div>
 
