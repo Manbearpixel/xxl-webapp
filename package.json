@@ -1,6 +1,6 @@
 {
   "name": "XXL-WebApp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "ObsidianXXL Dashboard Source -- EmberJS WebApp for Masternodes",
   "license": "MIT",
@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
+    "config": "^1.28.1",
     "moment": "^2.19.2",
     "simple-line-icons": "^2.4.1"
   }

@@ -3,7 +3,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    version: '0.1.0',
+    version: '0.1.1',
     rootURL: '/',
     environment,
     locationType: 'auto',
