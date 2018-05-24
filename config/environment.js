@@ -3,7 +3,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    version: '0.1.1',
+    version: '0.2.0',
     rootURL: '/',
     environment,
     locationType: 'auto',
@@ -23,9 +23,9 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      enable_search:  false, // enable blockchain search
-      ODN_API_XXL:    'http://localhost:4201',  // uri for xxl-api
-      ODN_API_SEARCH: 'http://localhost:3000'   // uri for blockchain search
+      enable_search:  true, // enable blockchain search
+      ODN_API_XXL:    'http://localhost:3000',  // uri for xxl-api
+      ODN_API_SEARCH: 'http://localhost:3000/api/search'   // uri for blockchain search
     }
   };
 
@@ -49,7 +49,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.ODN_API_XXL     = ''
+    ENV.APP.ODN_API_XXL     = 'https://api.odn.init.run';
+    END.APP.ODN_API_SEARCH  = 'https://api.odn.init.run/api/search';
   }
 
   return ENV;

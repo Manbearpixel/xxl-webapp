@@ -8,7 +8,7 @@ let searchTransaction = (_txid, odnNetwork) => {
     .then((response) => {
 
       console.log('response get!', response);
-      if (response.status == 'success') { resolve(response.response); }
+      if (response.status === 'ok') { resolve(response.tx); }
       else if (response.status == 'error') { reject(response.error); }
       else { reject('An error occurred communicating with the network.'); }
     }).catch(reject);

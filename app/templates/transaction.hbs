@@ -8,7 +8,7 @@
   </div>
 
   <dl class="hide">
-  {{#each-in model.response.block as |key value|}}
+  {{#each-in model.response as |key value|}}
     <dd>{{value}}</dd>
     <dt>{{key}}</dt>
   {{/each-in}}
@@ -18,24 +18,24 @@
   <div class="xx-primary-data">
     <ul class="clearfix">
       <li class="u-font-size-md">type://<span>TRANSACTION</span></li>
-      <li class="u-font-size-md">tx_type://<span>{{model.response.transaction.tx_type}}</span></li>
-      <li>txid://<span class="word-wrap">{{model.response.transaction.txid}}</span></li>
+      <li class="u-font-size-md">block_height://<span>{{model.response.blockheight}}</span></li>
+      {{!-- <li>block://<span class="word-wrap">{{model.response.blockheight}}</span></li> --}}
     </ul>
   </div>
 
   <div class="xx-card u-margin-bottom-lg">
     <div class="xx-data-split split-first">
       <dl class="data-display inverse span2">
-        <dt class="overview--date">{{format-timestamp model.response.transaction.time}}</dt>
+        <dt class="overview--date">{{format-timestamp model.response.timestamp}}</dt>
         <dd>Date</dd>
       </dl>
       <dl class="data-display">
-        <dt>{{model.response.transaction.height_key}}</dt>
+        <dt>{{model.response.blockheight}}</dt>
         <dd>Height</dd>
       </dl>
       <dl class="data-display">
-        <dt>{{model.response.fee}}</dt>
-        <dd>Fees</dd>
+        <dt>{{model.response.total}}</dt>
+        <dd>Total</dd>
       </dl>
     </div>
   </div>
@@ -44,17 +44,19 @@
   <div class="xx-card theme--action">
     <h4 class="title u-font-weight-2">Sender</h4>
 
-    {{#each-in model.response.vins as |key_vin vin|}}
+    {{#each-in model.response.vin as |key_vin vin|}}
     <div class="details details--vin">
       <div class="wrap clearfix">
         <p class="details--address">
-          {{#if (eq vin.address_key null)}}
+          {{#if (eq vin.addresses null)}}
           Network
+          {{else if (eq vin.addresses 'coinbase')}}
+          Coinbase
           {{else}}
-          {{#link-to "address" vin.address_key class='theme-block'}}{{vin.address_key}}{{/link-to}}
+          {{#link-to "address" vin.addresses class='theme-block'}}{{vin.addresses}}{{/link-to}}
           {{/if}}
         </p>
-        <p class="details--value">{{vin.value}}</p>
+        <p class="details--value">{{vin.amount}}</p>
       </div>
     </div>
     {{/each-in}}
@@ -63,17 +65,19 @@
   <div class="xx-card theme--action">
     <h4 class="title u-font-weight-2">Receiver</h4>
 
-    {{#each-in model.response.vouts as |key_vout vout|}}
+    {{#each-in model.response.vout as |key_vout vout|}}
     <div class="details details--vout">
       <div class="wrap clearfix">
         <p class="details--address">
-          {{#if (eq vout.address_key null)}}
+          {{#if (eq vout.addresses null)}}
           Network
+          {{else if (eq vout.addresses 'coinbase')}}
+          Coinbase
           {{else}}
-          {{#link-to "address" vout.address_key class='theme-block'}}{{vout.address_key}}{{/link-to}}
+          {{#link-to "address" vout.addresses class='theme-block'}}{{vout.addresses}}{{/link-to}}
           {{/if}}
         </p>
-        <p class="details--value">{{vout.value}}</p>
+        <p class="details--value">{{vout.amount}}</p>
       </div>
     </div>
     {{/each-in}}

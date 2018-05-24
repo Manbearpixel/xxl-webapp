@@ -6,7 +6,7 @@ let searchBlock = (_block, odnNetwork) => {
     .then((data) => {
       console.log('response get!', data.response);
 
-      if (data.status == 'success') { resolve(data.response); }
+      if (data.status === 'ok') { resolve(data); }
       else if (data.status == 'error') { reject(data.error); }
       else { reject('An error occurred communicating with the network.'); }
     }).catch(reject);
@@ -18,6 +18,7 @@ export default Ember.Route.extend({
 
   model(params) {
     console.log('search');
+    
     return Ember.RSVP.hash({
       params: params,
       name: 'sample',
