@@ -50,7 +50,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.APP.ODN_API_XXL     = 'https://api.odn.init.run';
-    END.APP.ODN_API_SEARCH  = 'https://api.odn.init.run/api/search';
+    ENV.APP.ODN_API_SEARCH  = 'https://api.odn.init.run/api/search';
   }
 
   return ENV;

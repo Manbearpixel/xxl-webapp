@@ -10,7 +10,7 @@ const XXL_ROUTES  = {
   staking:  'blockchain/getstakinginfo',
   network:  'blockchain/getnettotals',
   system:   'system',
-  price:    'price'
+  price:    'market'
 };
 
 // TODO: all error catches should be rejected and handled properly...
@@ -94,7 +94,9 @@ export default Ember.Service.extend({
       Ember.$.getJSON(`${XXL_API}/api/${XXL_ROUTES.price}`)
       .then((Price) => {
         // console.log('GOT price', Price);
-        resolve(Price.response);
+        let market = Price.market;
+        market['updated_last'] = Price.updated;
+        resolve(market);
       }).catch((error) => {
         // console.log('price error', error);
         resolve('error grabbing price');
