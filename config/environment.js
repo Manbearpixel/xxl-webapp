@@ -49,8 +49,12 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.ODN_API_XXL     = 'https://api.odn.init.run';
-    ENV.APP.ODN_API_SEARCH  = 'https://api.odn.init.run/api/search';
+    if (!process.env.XXL_ENABLE_SEARCH) {
+      ENV.APP.enable_search = false;
+    }
+
+    ENV.APP.ODN_API_XXL     = process.env.XXL_API     || '';
+    ENV.APP.ODN_API_SEARCH  = process.env.XXL_SEARCH  || '';
   }
 
   return ENV;
