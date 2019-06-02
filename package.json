@@ -1,8 +1,8 @@
 {
   "name": "XXL-WebApp",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "private": true,
-  "description": "ObsidianXXL Dashboard Source -- EmberJS WebApp for Masternodes",
+  "description": "ObsidianXXL Dashboard Source -- EmberJS WebApp for Node Operators",
   "license": "MIT",
   "author": "manbearpixel",
   "directories": {

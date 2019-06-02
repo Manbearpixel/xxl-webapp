@@ -42,8 +42,8 @@
         <dd>Mint</dd>
       </dl>
       <dl class="data-display">
-        <dt>{{model.response.transactions.length}}</dt>
-        {{#if (or (gt model.response.transactions.length 1) (eq model.response.transactions.length 0))}}
+        <dt>{{model.response.txs.length}}</dt>
+        {{#if (or (gt model.response.txs.length 1) (eq model.response.txs.length 0))}}
           <dd>{{title}}Transactions</dd>
         {{else}}
           <dd>{{title}}Transaction</dd>
@@ -60,7 +60,7 @@
   <button class="hide" type="button">Previous Block</button>
   {{/if}}
 
-  {{#each-in model.response.transactions as |num transaction|}}
+  {{#each-in model.response.txs as |num transaction|}}
     <div class="xx-card theme--action xx-card--split-grid">
       <h4 class="title u-font-weight-2">Transaction:// <span class="theme-action">{{increment-index num}}</span></h4>
 
@@ -71,29 +71,33 @@
 
       <div class="details details--vin">
         <h5 class="title">Sender</h5>
-        {{#each-in transaction.vins as |key_vin vin|}}
+        {{#each-in transaction.vin as |key_vin vin|}}
         <div class="wrap clearfix">
           <p class="details--address">
-            {{#if (eq vin.address_key null)}}
+            {{#if (eq vin.addresses null)}}
             Network
+            {{else if (eq vin.addresses 'coinbase')}}
+            Coinbase
             {{else}}
-            {{#link-to "address" vin.address_key class='theme-block'}}{{vin.address_key}}{{/link-to}}
+            {{#link-to "address" vin.addresses class='theme-block'}}{{vin.addresses}}{{/link-to}}
             {{/if}}
           </p>
-          <p class="details--value">{{vin.value}}</p>
+          {{#if (not-eq vin.addresses 'coinbase')}}
+          <p class="details--value">{{vin.amount}}</p>
+          {{/if}}
         </div>
         {{/each-in}}
       </div>
 
       <div class="details details--vout">
         <h5 class="title">Receiver</h5>
-        {{#each-in transaction.vouts as |key_vout vout|}}
+        {{#each-in transaction.vout as |key_vout vout|}}
           {{#if (not-eq vout.address_key null)}}
           <div class="wrap clearfix">
             <p class="details--address">
-              {{#link-to "address" vout.address_key class='theme-block'}}{{vout.address_key}}{{/link-to}}
+              {{#link-to "address" vout.addresses class='theme-block'}}{{vout.addresses}}{{/link-to}}
             </p>
-            <p class="details--value">{{vout.value}}</p>
+            <p class="details--value">{{vout.amount}}</p>
           </div>
           {{/if}}
         {{/each-in}}

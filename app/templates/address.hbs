@@ -8,7 +8,7 @@
   </div>
 
   <dl class="hide">
-  {{#each-in model.response.block as |key value|}}
+  {{#each-in model.response as |key value|}}
     <dd>{{value}}</dd>
     <dt>{{key}}</dt>
   {{/each-in}}
@@ -18,31 +18,31 @@
   <div class="xx-primary-data">
     <ul class="clearfix">
       <li class="u-font-size-md">type://<span>ADDRESS</span></li>
-      <li class="u-font-size-md">public_key://<span class="word-wrap">{{model.response.address.address}}</span></li>
+      <li class="u-font-size-md">public_key://<span class="word-wrap">{{model.response.address}}</span></li>
     </ul>
   </div>
 
   <div class="xx-card u-margin-bottom-lg">
     <div class="xx-data-split split-first">
       <dl class="data-display inverse span2">
-        <dt class="overview--date">{{format-timestamp model.response.address.last_tx}}</dt>
+        <dt class="overview--date" data-hide="format-timestamp model.response.address.last_tx">---</dt>
         <dd>Last Transaction</dd>
       </dl>
       <dl class="data-display">
-        <dt>{{model.response.address.balance}}</dt>
+        <dt>{{model.response.balance}}</dt>
         <dd>Balance</dd>
       </dl>
       <dl class="data-display">
-        <dt>{{model.response.address.fees}}</dt>
+        <dt data-hide="model.response.fees">---</dt>
         <dd>Minted</dd>
       </dl>
       <dl class="data-display">
-        <dt>{{model.response.vins.length}}</dt>
-        <dd>Transactions In</dd>
+        <dt>{{model.response.received}}</dt>
+        <dd>Amount Received</dd>
       </dl>
       <dl class="data-display">
-        <dt>{{model.response.vouts.length}}</dt>
-        <dd>Transactions Out</dd>
+        <dt>{{model.response.sent}}</dt>
+        <dd>Amount Sent</dd>
       </dl>
     </div>
   </div>

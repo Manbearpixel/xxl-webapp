@@ -5,12 +5,12 @@ const XXL_API     = config.APP.ODN_API_XXL;
 const SEARCH_API  = config.APP.ODN_API_SEARCH;
 
 const XXL_ROUTES  = {
-  info:     'node/info',
-  mining:   'node/mining',
-  staking:  'node/staking',
-  network:  'node/network',
+  info:     'blockchain/getinfo', 
+  mining:   'blockchain/getmininginfo',
+  staking:  'blockchain/getstakinginfo',
+  network:  'blockchain/getnettotals',
   system:   'system',
-  price:    'price'
+  price:    'market'
 };
 
 // TODO: all error catches should be rejected and handled properly...
@@ -94,7 +94,9 @@ export default Ember.Service.extend({
       Ember.$.getJSON(`${XXL_API}/api/${XXL_ROUTES.price}`)
       .then((Price) => {
         // console.log('GOT price', Price);
-        resolve(Price.response);
+        let market = Price.market;
+        market['updated_last'] = Price.updated;
+        resolve(market);
       }).catch((error) => {
         // console.log('price error', error);
         resolve('error grabbing price');
@@ -112,7 +114,7 @@ export default Ember.Service.extend({
   */
   runSearch: (query) => {
     return new Promise((resolve, reject) => {
-      Ember.$.getJSON(`${SEARCH_API}/search/${query}`)
+      Ember.$.getJSON(`${SEARCH_API}/${query}`)
       .then((Search) => {
         resolve(Search);
       })
@@ -125,16 +127,16 @@ export default Ember.Service.extend({
       - Accepts Block Hash (1a2b3c)
   */
   fetchBlock: function(block_id) {
-    return Ember.$.getJSON(`${SEARCH_API}/api/block/${block_id}`);
+    return Ember.$.getJSON(`${XXL_API}/api/block/${block_id}`);
   },
 
   /* Fetch transaction details related to a txid */
   fetchTransaction: function(txid) {
-    return Ember.$.getJSON(`${SEARCH_API}/api/transaction/${txid}`);
+    return Ember.$.getJSON(`${XXL_API}/api/tx/${txid}`);
   },
 
   /* Fetch address details related to an address key */
   fetchAddress: function(address) {
-    return Ember.$.getJSON(`${SEARCH_API}/api/address/${address}`);
+    return Ember.$.getJSON(`${XXL_API}/api/address/${address}`);
   }
 });

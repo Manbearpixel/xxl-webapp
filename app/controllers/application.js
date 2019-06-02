@@ -21,20 +21,21 @@ export default Ember.Controller.extend({
 
         this.get('odnNetwork').runSearch(query)
         .then((Search) => {
-          if (Search.status == 'success') {
-            if (Search.response.search_type === 'block') {
+          console.log(Search);
+          if (Search.status === 'ok') {
+            if (Search.search_type === 'block') {
               this.transitionToRoute('block', query);
             }
-            else if (Search.response.search_type === 'transaction') {
+            else if (Search.search_type === 'transaction') {
               this.transitionToRoute('transaction', query);
             }
-            else if (Search.response.search_type === 'address') {
+            else if (Search.search_type === 'address') {
               this.transitionToRoute('address', query);
             }
             else {
-              this.transitionToRoute('search', {queryParams: {
-                query: query
-              }});
+              this.transitionToRoute('search', {
+                queryParams: { query: query }
+              });
             }
 
             Ember.run.later((() => {

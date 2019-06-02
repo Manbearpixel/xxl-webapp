@@ -6,7 +6,7 @@ let searchAddress = (_address, odnNetwork) => {
     odnNetwork.fetchAddress(_address)
     .then((data) => {
 
-      if (data.status == 'success') { resolve(data.response); }
+      if (data.status == 'ok') { resolve(data.address); }
       else if (data.status == 'error') { reject(data.error); }
       else { reject('An error occurred communicating with the network.'); }
     }).catch(reject);
